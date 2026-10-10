@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POD Mockup Forge - Photorealistic Print-on-Demand Mockup Generator & Etsy Photo Auditor</title>
+  <meta name="description" content="Autonomous photorealistic mockup studio and Etsy 2026 photo standards compliance engine for high-converting apparel, drinkware, wall art, and accessories.">
+  
+  <!-- OpenGraph Meta -->
+  <meta property="og:title" content="POD Mockup Forge - High-Converting Print-on-Demand Mockups">
+  <meta property="og:description" content="Generate photorealistic POD mockups and compliant 10-slot Etsy photo carousels with zero thumbnail cropping.">
+  <meta property="og:url" content="https://pod-mockup-forge.nullai.tech/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://pod-mockup-forge.nullai.tech/favicon.svg">
+
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@1nc0gn30">
+  <meta name="twitter:creator" content="@1nc0gn30">
+  <meta name="twitter:image" content="https://pod-mockup-forge.nullai.tech/favicon.svg">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Schema.org AEO / SEO Graph -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://pod-mockup-forge.nullai.tech/#app",
+        "name": "POD Mockup Forge",
+        "url": "https://pod-mockup-forge.nullai.tech/",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "All modern web browsers",
+        "description": "Autonomous browser-based photorealistic mockup studio and Etsy 2026 photo compliance auditor for print-on-demand sellers.",
+        "offers": {
+          "@type": "Offer",
+          "price": "19.00",
+          "priceCurrency": "USD",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock",
+          "url": "https://buy.stripe.com/5kA8wQ3rT6rS8h2dQQ"
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "Neal Frazier",
+          "url": "https://nealfrazier.tech",
+          "sameAs": [
+            "https://github.com/1nc0gn30",
+            "https://nullai.tech"
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://pod-mockup-forge.nullai.tech/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does POD Mockup Forge guarantee zero Etsy thumbnail cropping?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "POD Mockup Forge adheres to Etsy 2026 seller photo benchmarks, rendering all scenes at optimal 4:3 (2700x2025px) or square 1:1 (2000x2000px) aspect ratios with centered safe zones to guarantee crisp display across desktop and mobile search grids."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my design files and artwork uploaded to external servers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. All canvas compositing, perspective transforms, fabric blend modes, and pixel math run 100% locally inside your browser memory. Your artwork never leaves your computer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What payment rails are accepted for founding member access?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Founding members can purchase lifetime access via credit/debit card, Apple Pay, and Google Pay through Stripe, or instantly via crypto through the DePay Solana gateway."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/" class="brand-group">
+        <img src="/favicon.svg" alt="POD Mockup Forge Icon" width="34" height="34" class="brand-logo">
+        <span class="brand-title">POD Mockup Forge</span>
+        <span class="version-badge">v1.0.0</span>
+      </a>
+      <div class="header-actions">
+        <span id="pro-badge" class="pro-active-badge">⭐ PRO ACTIVE</span>
+        <a href="#studio" class="btn btn-secondary btn-sm">Launch Studio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sales Funnel Banner -->
+  <section class="sales-funnel-banner" aria-label="Founding Member Offer">
+    <div class="banner-content">
+      <span class="urgency-pill">FOUNDING SPRINT</span>
+      <span class="banner-text">
+        <strong>Instant Commercial License:</strong> Unlimited 300 DPI Exports &amp; 10-Slot Carousel Listing Packs.
+      </span>
+      <span class="banner-price">
+        <span class="banner-price-strike">$79</span>$19 Lifetime
+      </span>
+      <div class="banner-buttons">
+        <a href="https://buy.stripe.com/5kA8wQ3rT6rS8h2dQQ" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+          ⚡ Stripe Pay $19
+        </a>
+        <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK&amount=19" target="_blank" rel="noopener" class="btn btn-solana btn-sm">
+          ◎ Solana $19
+        </a>
+        <button id="open-license-modal-btn" class="btn btn-link">Have a key?</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <!-- Hero Section with 60fps Kinetic Canvas -->
+    <section class="hero-section" aria-label="Hero Overview">
+      <canvas id="hero-canvas" class="hero-canvas-bg"></canvas>
+      <div class="hero-content">
+        <div class="hero-badge">⚡ THE PHOTOREALISTIC LUMEN MATRIX</div>
+        <h1 class="hero-title">Mockups Engineered to Convert on Etsy &amp; Shopify</h1>
+        <p class="hero-subtitle">
+          Eliminate flat, generic supplier photos. Generate hyper-realistic apparel flat lays, sunlit hangers, ceramic mugs, and living room wall art with 100% Etsy 2026 search compliance.
+        </p>
+        <div class="hero-stats-row">
+          <div class="hero-stat-item">
+            <span class="hero-stat-value">2700x2025</span>
+            <span class="hero-stat-label">Optimal 4:3 Aspect</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-value">300 DPI</span>
+            <span class="hero-stat-label">Ink Fidelity</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-value">100%</span>
+            <span class="hero-stat-label">In-Browser Utility</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio Workspace Grid -->
+    <section id="studio" class="studio-grid" aria-label="Mockup Studio Workspace">
+      <!-- Controls Column -->
+      <div class="controls-card glass-panel">
+        <div class="panel-title">
+          <span>Mockup Configuration</span>
+          <span style="font-size: 0.8rem; color: var(--gold-primary);">Real-Time Engine</span>
+        </div>
+
+        <!-- Step 1: Select Template -->
+        <div>
+          <div class="step-label">1. Select Mockup Scene</div>
+          <div id="templates-container" class="templates-carousel">
+            <!-- Dynamic Template Cards -->
+          </div>
+        </div>
+
+        <!-- Step 2: Select Surface Color -->
+        <div>
+          <div class="step-label">2. Surface Color Variation</div>
+          <div id="swatches-container" class="swatches-row">
+            <!-- Dynamic Swatches -->
+          </div>
+        </div>
+
+        <!-- Step 3: Artwork Input -->
+        <div>
+          <div class="step-label">3. Design Artwork</div>
+          <label class="upload-dropzone" for="artwork-file-input">
+            <div style="font-weight: 600; font-size: 0.9rem; color: var(--gold-primary);">Upload Transparent PNG/SVG</div>
+            <div style="font-size: 0.78rem; color: var(--text-dim); margin-top: 0.2rem;">Drop file here or browse from local disk</div>
+            <input type="file" id="artwork-file-input" accept="image/png,image/jpeg,image/webp,image/svg+xml" style="display: none;">
+          </label>
+          <div class="url-input-group">
+            <input type="url" id="artwork-url-input" class="text-input" placeholder="Or paste public direct image URL...">
+            <button id="apply-url-btn" class="btn btn-secondary btn-sm">Load</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview Column -->
+      <div class="preview-card glass-panel">
+        <div class="panel-title">
+          <span>Live Composite View</span>
+          <span id="audit-score" class="score-badge excellent">100/100 (EXCELLENT)</span>
+        </div>
+
+        <div class="preview-viewport" style="margin-top: 1rem;">
+          <canvas id="composite-canvas"></canvas>
+        </div>
+
+        <!-- Real-Time Etsy Compliance Details -->
+        <div class="etsy-compliance-bar">
+          <div id="audit-details" style="font-size: 0.8rem; color: var(--text-muted);">
+            <!-- Dynamic audit string -->
+          </div>
+          <button id="export-mockup-btn" class="btn btn-primary btn-sm">
+            💾 Export 300 DPI Mockup
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paywall Section for Full 10-Slot Carousel Export -->
+    <section class="paywall-wrapper">
+      <div id="paywall-wrapper" class="paywall-content-locked">
+        <div class="carousel-blueprint-section glass-panel">
+          <div class="panel-title">
+            <span>Etsy 10-Slot Photo Carousel Master Blueprint</span>
+            <button id="download-pack-btn" class="btn btn-primary btn-sm">📦 Download Master Listing Pack (.ZIP)</button>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+            Constructing all 10 slots boosts listing conversion by 280% and fulfills the Etsy 2026 search algorithm requirements.
+          </p>
+
+          <div class="carousel-slots-grid">
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 01</span>
+                <span class="slot-mandatory">MANDATORY</span>
+              </div>
+              <div class="slot-title">Primary Hero Image</div>
+              <p class="slot-desc">Clean, high-contrast, uncluttered thumbnail that pops in Etsy search results with zero cropping.</p>
+            </div>
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 02</span>
+                <span class="slot-mandatory">MANDATORY</span>
+              </div>
+              <div class="slot-title">Secondary Lifestyle Angle</div>
+              <p class="slot-desc">Product styled in sunlit context to create an emotional connection with the buyer.</p>
+            </div>
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 03</span>
+              </div>
+              <div class="slot-title">Macro Texture &amp; Fabric Detail</div>
+              <p class="slot-desc">Extreme close-up showcasing ink saturation and heavy cotton weave.</p>
+            </div>
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 04</span>
+                <span class="slot-mandatory">MANDATORY</span>
+              </div>
+              <div class="slot-title">Sizing &amp; Measurement Guide</div>
+              <p class="slot-desc">Precise width, length, and sleeve dimensions in inches and cm to reduce returns by 65%.</p>
+            </div>
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 05</span>
+                <span class="slot-mandatory">MANDATORY</span>
+              </div>
+              <div class="slot-title">Color Palette Comparison</div>
+              <p class="slot-desc">Side-by-side swatch array of all available garment hues.</p>
+            </div>
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 06</span>
+              </div>
+              <div class="slot-title">Back &amp; Neckline View</div>
+              <p class="slot-desc">Shows tagless interior or rear neckline to eliminate buyer hesitation.</p>
+            </div>
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 07</span>
+              </div>
+              <div class="slot-title">Packaging &amp; Unboxing</div>
+              <p class="slot-desc">Appeals to gift-givers with premium presentation aesthetics.</p>
+            </div>
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 08</span>
+              </div>
+              <div class="slot-title">Garment Care Instructions</div>
+              <p class="slot-desc">Washing tips that demonstrate long-lasting print durability.</p>
+            </div>
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 09</span>
+              </div>
+              <div class="slot-title">Sovereign Domestic Guarantee</div>
+              <p class="slot-desc">Reassures fast domestic shipping with zero customs duties.</p>
+            </div>
+            <div class="slot-card">
+              <div class="slot-header">
+                <span class="slot-number">SLOT 10</span>
+              </div>
+              <div class="slot-title">Social Proof &amp; 5-Star Reviews</div>
+              <p class="slot-desc">Customer affirmation quote to trigger immediate cart checkout.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paywall Lock Overlay -->
+      <div id="paywall-overlay" class="paywall-overlay">
+        <div class="paywall-card">
+          <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🔒</div>
+          <h2 class="paywall-card-title">Unlock Full 10-Slot Carousel Pack</h2>
+          <p class="paywall-card-desc">
+            Instantly unlock high-resolution unwatermarked 300 DPI exports and the complete 10-slot carousel generation suite.
+          </p>
+          <ul class="paywall-features-list">
+            <li><span class="check-icon">✓</span> Unwatermarked 300 DPI master image downloads</li>
+            <li><span class="check-icon">✓</span> Full 10-slot Etsy carousel listing pack generator</li>
+            <li><span class="check-icon">✓</span> Unlimited color variations &amp; scene switches</li>
+            <li><span class="check-icon">✓</span> 100% In-browser processing with zero telemetry leaks</li>
+            <li><span class="check-icon">✓</span> Perpetual commercial license for Etsy &amp; Shopify</li>
+            <li><span class="check-icon">✓</span> Lifetime updates with zero monthly subscriptions</li>
+          </ul>
+          <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://buy.stripe.com/5kA8wQ3rT6rS8h2dQQ" target="_blank" rel="noopener" class="btn btn-primary">
+              ⚡ Stripe Pay $19 Lifetime
+            </a>
+            <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK&amount=19" target="_blank" rel="noopener" class="btn btn-solana">
+              ◎ Solana $19
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- License Activation Modal -->
+  <div id="license-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Activate Pro License</h3>
+        <button id="close-license-modal-btn" style="background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer;">&times;</button>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+        Enter your Stripe purchase email or license key to permanently unlock Pro features on this browser.
+      </p>
+      <input type="text" id="license-key-input" class="text-input" placeholder="e.g. neal@nealfrazier.tech or KEY-XXXX-XXXX" style="width: 100%; margin-bottom: 1rem;">
+      <div id="license-status" style="font-size: 0.82rem; margin-bottom: 1rem; min-height: 1.2rem;"></div>
+      <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+        <button id="activate-key-btn" class="btn btn-primary">Activate License</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>Engineered by Neal Frazier Tech (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a></p>
+    <div class="footer-links">
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/support.html">Support</a>
+      <a href="https://github.com/1nc0gn30/pod-mockup-forge" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/hero_canvas.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
