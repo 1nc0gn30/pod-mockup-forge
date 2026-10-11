@@ -5,8 +5,27 @@ and HTML5 Canvas rendering instructions with zero external pip dependencies.
 100% Python Standard Library.
 """
 
+import re
+from html import escape as _esc
 from typing import Dict, Any, Optional, Tuple
 from .templates import MOCKUP_TEMPLATES, MockupTemplate
+
+_HEX_RE = re.compile(r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$")
+_SAFE_URL_RE = re.compile(r"^(?:https?://|data:image/(?:png|jpe?g|webp|gif|svg\+xml);base64,|\.{0,2}/|[\w.-]+\.(?:png|jpe?g|webp|gif|svg)$)", re.I)
+
+
+def validate_hex_color(value: str) -> str:
+    if not isinstance(value, str) or not _HEX_RE.match(value.strip()):
+        raise ValueError(f"color must be a hex value like #F5F5DC, got {value!r}")
+    return value.strip()
+
+
+def validate_artwork_url(url: str) -> str:
+    """Allow http(s), image data: URIs and relative image paths; block javascript: etc."""
+    if not isinstance(url, str) or not url.strip() or not _SAFE_URL_RE.match(url.strip()) \
+            or any(ch in url for ch in '"<>\'`') or any(ch.isspace() for ch in url.strip()):
+        raise ValueError(f"artwork must be an http(s) URL, image data: URI or relative image path, got {url!r}")
+    return url.strip()
 
 class MockupCompositeEngine:
     """Computes placement coordinates, aspect ratios, and generates composite render specs."""
@@ -21,7 +40,9 @@ class MockupCompositeEngine:
     ) -> Dict[str, float]:
         """Calculates centered scaling dimensions to fit artwork within print area without distortion."""
         if art_w <= 0 or art_h <= 0 or target_w <= 0 or target_h <= 0:
-            return {"width": target_w, "height": target_h, "offset_x": 0.0, "offset_y": 0.0}
+            raise ValueError("artwork and target dimensions must all be > 0")
+        if mode not in ("contain", "cover"):
+            raise ValueError("mode must be 'contain' or 'cover'")
 
         art_aspect = art_w / art_h
         target_aspect = target_w / target_h
@@ -65,8 +86,11 @@ class MockupCompositeEngine:
         artwork_height: int = 1200
     ) -> Dict[str, Any]:
         """Generates a complete scene composite specification."""
-        tpl = MOCKUP_TEMPLATES.get(template_id, MOCKUP_TEMPLATES["gildan_18000_flatlay"])
-        chosen_hex = color_hex or tpl.supported_colors[0]["hex"]
+        tpl = MOCKUP_TEMPLATES.get(template_id)
+        if tpl is None:
+            raise ValueError(f"Unknown template {template_id!r}. Use one of: {', '.join(MOCKUP_TEMPLATES)}")
+        chosen_hex = validate_hex_color(color_hex) if color_hex else tpl.supported_colors[0]["hex"]
+        artwork_url = validate_artwork_url(artwork_url)
 
         # Calculate absolute pixel bounding box on target canvas
         box_x = tpl.canvas_width * tpl.print_area.x_percent
@@ -131,6 +155,12 @@ class MockupCompositeEngine:
         """Generates an embedded standalone SVG markup simulating fabric texture and lighting."""
         w = tpl.canvas_width
         h = tpl.canvas_height
+        href = _esc(artwork_url, quote=True)  # defence in depth on top of validation
+        fill = _esc(chosen_hex, quote=True)
+        blend = _esc(str(tpl.blend_mode), quote=True)
+        rot = float(tpl.print_area.rotation_deg or 0.0)
+        cx, cy = art_x + art_w / 2.0, art_y + art_h / 2.0
+        rotate_attr = f' transform="rotate({rot:g} {cx:.1f} {cy:.1f})"' if rot else ""
 
         watermark_xml = ""
         if watermark:
@@ -157,13 +187,13 @@ class MockupCompositeEngine:
   <rect width="{w}" height="{h}" fill="#141824"/>
 
   <!-- Product Base Substrate -->
-  <rect x="{w*0.15}" y="{h*0.1}" width="{w*0.7}" height="{h*0.8}" rx="24" fill="{chosen_hex}" filter="url(#fabricTexture)"/>
+  <rect x="{w*0.15}" y="{h*0.1}" width="{w*0.7}" height="{h*0.8}" rx="24" fill="{fill}" filter="url(#fabricTexture)"/>
 
   <!-- Fabric Lighting Overlay -->
-  <rect x="{w*0.15}" y="{h*0.1}" width="{w*0.7}" height="{h*0.8}" rx="24" fill="url(#ambientLight)" mix-blend-mode="multiply"/>
+  <rect x="{w*0.15}" y="{h*0.1}" width="{w*0.7}" height="{h*0.8}" rx="24" fill="url(#ambientLight)" style="mix-blend-mode: multiply;"/>
 
   <!-- Artwork Layer -->
-  <image href="{artwork_url}" x="{art_x}" y="{art_y}" width="{art_w}" height="{art_h}" preserveAspectRatio="xMidYMid meet" opacity="0.95" style="mix-blend-mode: {tpl.blend_mode};"/>
+  <image href="{href}" x="{art_x}" y="{art_y}" width="{art_w}" height="{art_h}" preserveAspectRatio="xMidYMid meet" opacity="0.95" style="mix-blend-mode: {blend};"{rotate_attr}/>
 
   {watermark_xml}
 </svg>"""

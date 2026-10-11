@@ -51,6 +51,7 @@ def main():
     p_audit.add_argument("--width", type=int, default=2000, help="Image width in px")
     p_audit.add_argument("--height", type=int, default=2000, help="Image height in px")
     p_audit.add_argument("--mb", type=float, default=3.5, help="File size in MB")
+    p_audit.add_argument("--file", help="Read width/height/size from a real PNG/JPEG/GIF/WebP file (overrides --width/--height/--mb)")
     p_audit.add_argument("--json", action="store_true", help="Output raw JSON")
 
     # Command: server
@@ -61,6 +62,13 @@ def main():
     p_mcp = subparsers.add_parser("mcp", help="Run Antigravity MCP stdio server")
 
     args = parser.parse_args()
+    try:
+        _run(args, parser)
+    except ValueError as e:
+        raise SystemExit(f"error: {e}")
+
+
+def _run(args, parser):
 
     if args.command == "list":
         templates = get_all_templates()
@@ -134,6 +142,10 @@ def main():
                 print("-" * 70)
 
     elif args.command == "audit":
+        if args.file:
+            from .image_probe import probe_image
+            args.width, args.height, args.mb = probe_image(args.file)
+            args.mb = round(args.mb, 2)
         audit = EtsyPhotoAuditor.audit_image(args.width, args.height, args.mb)
         if args.json:
             print(json.dumps(audit, indent=2))

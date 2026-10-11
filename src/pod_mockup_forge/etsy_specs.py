@@ -105,6 +105,10 @@ class EtsyPhotoAuditor:
     @staticmethod
     def audit_image(width_px: int, height_px: int, file_size_mb: float = 3.5) -> Dict[str, Any]:
         """Audits image dimensions against Etsy requirements."""
+        if not (isinstance(width_px, (int, float)) and isinstance(height_px, (int, float))) or width_px <= 0 or height_px <= 0:
+            raise ValueError("width_px and height_px must be positive numbers")
+        if file_size_mb is None or file_size_mb < 0:
+            raise ValueError("file_size_mb must be >= 0")
         issues = []
         warnings = []
         recommendations = []
@@ -166,7 +170,7 @@ class EtsyPhotoAuditor:
                 "minimum_resolution_2000px": res_ok,
                 "max_file_size_20mb": size_ok,
                 "standard_aspect_ratio": aspect_ok,
-                "srgb_color_space": True
+                "srgb_color_space": None  # not inspected: dimensions-only audit
             },
             "issues": issues,
             "warnings": warnings,
