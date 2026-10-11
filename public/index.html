@@ -11,16 +11,21 @@
   <meta property="og:description" content="Generate photorealistic POD mockups and compliant 10-slot Etsy photo carousels with zero thumbnail cropping.">
   <meta property="og:url" content="https://pod-mockup-forge.nullai.tech/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://pod-mockup-forge.nullai.tech/favicon.svg">
+  <meta property="og:image" content="https://pod-mockup-forge.nullai.tech/assets/banner.png">
 
   <!-- Twitter Meta -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@1nc0gn30">
   <meta name="twitter:creator" content="@1nc0gn30">
-  <meta name="twitter:image" content="https://pod-mockup-forge.nullai.tech/favicon.svg">
+  <meta name="twitter:image" content="https://pod-mockup-forge.nullai.tech/assets/banner.png">
 
+  <link rel="canonical" href="https://pod-mockup-forge.nullai.tech/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
   <link rel="stylesheet" href="/style.css">
+  <script src="https://integrate.depay.com/widgets/v13.js" defer></script>
 
   <!-- Schema.org AEO / SEO Graph -->
   <script type="application/ld+json">
@@ -97,7 +102,8 @@
         <span class="version-badge">v1.0.0</span>
       </a>
       <div class="header-actions">
-        <span id="pro-badge" class="pro-active-badge">⭐ PRO ACTIVE</span>
+        <span id="pro-badge" class="pro-active-badge">FREE TIER</span>
+        <button id="btnHeaderKey" class="btn btn-secondary btn-sm" type="button">Key / Pro</button>
         <a href="#studio" class="btn btn-secondary btn-sm">Launch Studio</a>
       </div>
     </div>
@@ -117,7 +123,7 @@
         <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
           ⚡ Stripe Pay $19
         </a>
-        <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK&amount=19" target="_blank" rel="noopener" class="btn btn-solana btn-sm">
+        <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK&amount=19" target="_blank" rel="noopener" class="btn btn-solana btn-sm btn-depay-trigger" data-depay>
           ◎ Solana $19
         </a>
         <button id="open-license-modal-btn" class="btn btn-link">Have a key?</button>
@@ -327,29 +333,56 @@
             <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" class="btn btn-primary">
               ⚡ Stripe Pay $19 Lifetime
             </a>
-            <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK&amount=19" target="_blank" rel="noopener" class="btn btn-solana">
+            <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK&amount=19" target="_blank" rel="noopener" class="btn btn-solana btn-depay-trigger" data-depay>
               ◎ Solana $19
             </a>
+          </div>
+          <div style="margin-top: 0.85rem;">
+            <button id="paywall-key-btn" type="button" class="btn btn-link" style="color: var(--gold-primary); font-size: 0.82rem; cursor: pointer; background: none; border: none; text-decoration: underline;">Already purchased? Enter License Key</button>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- License Activation Modal -->
+  <!-- Pro Paywall & License Activation Modal -->
   <div id="license-modal" class="modal-backdrop">
     <div class="modal-card">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-        <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Activate Pro License</h3>
-        <button id="close-license-modal-btn" style="background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer;">&times;</button>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">⭐ Unlock Pro Commercial License</h3>
+        <button id="close-license-modal-btn" style="background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer;" aria-label="Close Modal">&times;</button>
       </div>
-      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-        Enter your Stripe purchase email or license key to permanently unlock Pro features on this browser.
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+        Instantly unlock unwatermarked 300 DPI exports and the complete 10-slot Etsy photo carousel blueprint engine.
       </p>
-      <input type="text" id="license-key-input" class="text-input" placeholder="e.g. neal@nealfrazier.tech or KEY-XXXX-XXXX" style="width: 100%; margin-bottom: 1rem;">
-      <div id="license-status" style="font-size: 0.82rem; margin-bottom: 1rem; min-height: 1.2rem;"></div>
-      <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
-        <button id="activate-key-btn" class="btn btn-primary">Activate License</button>
+
+      <ul class="paywall-features-list" style="margin: 0.5rem 0 1.25rem; font-size: 0.82rem;">
+        <li><span class="check-icon">✓</span> Unwatermarked 300 DPI master image downloads</li>
+        <li><span class="check-icon">✓</span> Full 10-slot Etsy carousel listing pack generator</li>
+        <li><span class="check-icon">✓</span> Unlimited color variations &amp; scene switches</li>
+        <li><span class="check-icon">✓</span> 100% In-browser processing with zero telemetry leaks</li>
+        <li><span class="check-icon">✓</span> Perpetual commercial license for Etsy &amp; Shopify</li>
+        <li><span class="check-icon">✓</span> Lifetime updates with zero monthly subscriptions</li>
+      </ul>
+
+      <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem;">
+        <a href="https://buy.stripe.com/7sI7sA8hM2X8eFG8ww" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; text-align: center;">
+          ⚡ Stripe Pay $19 Lifetime
+        </a>
+        <a href="https://depay.com/pay?integration=428790dd-7ad1-407c-8ecf-c048c77a4cb8&receiver=GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK&amount=19" target="_blank" rel="noopener" class="btn btn-solana btn-depay-trigger" data-depay style="width: 100%; text-align: center;">
+          ◎ Solana $19 Lifetime
+        </a>
+      </div>
+
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+        <label for="license-key-input" style="display: block; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+          Already purchased? Enter receipt email or license key:
+        </label>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="license-key-input" class="text-input" style="margin-bottom: 0;" placeholder="e.g. user@domain.com or MOCKUP-PRO-2026">
+          <button id="activate-key-btn" class="btn btn-secondary btn-sm" style="white-space: nowrap;">Activate</button>
+        </div>
+        <div id="license-status" style="font-size: 0.82rem; margin-top: 0.5rem; min-height: 1.2rem;"></div>
       </div>
     </div>
   </div>

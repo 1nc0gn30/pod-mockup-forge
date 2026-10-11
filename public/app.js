@@ -152,6 +152,8 @@
   const proBadge = document.getElementById("pro-badge");
   const licenseModal = document.getElementById("license-modal");
   const openLicenseModalBtn = document.getElementById("open-license-modal-btn");
+  const btnHeaderKey = document.getElementById("btnHeaderKey");
+  const paywallKeyBtn = document.getElementById("paywall-key-btn");
   const closeLicenseModalBtn = document.getElementById("close-license-modal-btn");
   const licenseKeyInput = document.getElementById("license-key-input");
   const activateKeyBtn = document.getElementById("activate-key-btn");
@@ -166,14 +168,33 @@
       localStorage.setItem("pod_mockup_pro_licensed", "true");
     }
 
-    if (localStorage.getItem("pod_mockup_pro_licensed") === "true") {
+    const isLicensed = localStorage.getItem("pod_mockup_pro_licensed") === "true" ||
+                       localStorage.getItem("pro_licensed") === "true";
+
+    if (isLicensed) {
       isProLicensed = true;
-      if (proBadge) proBadge.style.display = "inline-flex";
+      if (proBadge) {
+        proBadge.textContent = "⭐ PRO ACTIVE";
+        proBadge.classList.add("active");
+        proBadge.style.display = "inline-flex";
+      }
       if (paywallWrapper) {
         paywallWrapper.classList.remove("paywall-content-locked");
         paywallWrapper.classList.add("paywall-content-unlocked");
       }
       if (paywallOverlay) paywallOverlay.style.display = "none";
+    } else {
+      isProLicensed = false;
+      if (proBadge) {
+        proBadge.textContent = "FREE TIER";
+        proBadge.classList.remove("active");
+        proBadge.style.display = "inline-flex";
+      }
+      if (paywallWrapper) {
+        paywallWrapper.classList.add("paywall-content-locked");
+        paywallWrapper.classList.remove("paywall-content-unlocked");
+      }
+      if (paywallOverlay) paywallOverlay.style.display = "flex";
     }
   }
 
@@ -494,6 +515,18 @@
         if (licenseModal) licenseModal.style.display = "flex";
       });
     }
+    if (btnHeaderKey) {
+      btnHeaderKey.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (licenseModal) licenseModal.style.display = "flex";
+      });
+    }
+    if (paywallKeyBtn) {
+      paywallKeyBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (licenseModal) licenseModal.style.display = "flex";
+      });
+    }
     if (closeLicenseModalBtn) {
       closeLicenseModalBtn.addEventListener("click", () => {
         if (licenseModal) licenseModal.style.display = "none";
@@ -507,7 +540,7 @@
 
     // License Activation
     if (activateKeyBtn && licenseKeyInput) {
-      activateKeyBtn.addEventListener("click", () => {
+      const handleActivation = () => {
         const key = licenseKeyInput.value.trim();
         if (key.length >= 6) {
           localStorage.setItem("pod_mockup_pro_licensed", "true");
@@ -520,15 +553,41 @@
             if (licenseModal) licenseModal.style.display = "none";
             checkProStatus();
             updateCanvas();
-          }, 1200);
+          }, 800);
         } else {
           if (licenseStatusEl) {
             licenseStatusEl.textContent = "❌ Please enter a valid license key or order receipt email.";
             licenseStatusEl.style.color = "#EF4444";
           }
         }
+      };
+
+      activateKeyBtn.addEventListener("click", handleActivation);
+      licenseKeyInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          handleActivation();
+        }
       });
     }
+
+    // DePay Web3 Solana Trigger
+    document.querySelectorAll(".btn-depay-trigger").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        if (window.DePayButtons && typeof window.DePayButtons.init === "function") {
+          e.preventDefault();
+          try {
+            window.DePayButtons.init({
+              integration: "428790dd-7ad1-407c-8ecf-c048c77a4cb8",
+              receiver: "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK",
+              amount: 19
+            });
+          } catch (err) {
+            window.open(btn.href, "_blank");
+          }
+        }
+      });
+    });
   }
 
   // Initialize
