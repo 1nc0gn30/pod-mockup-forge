@@ -1,0 +1,13 @@
+{
+  "name": "pod-mockup-forge",
+  "version": "2.5.0",
+  "description": "Photorealistic mockup studio with Lumen Matrix ink blending for Etsy & Shopify POD listings",
+  "main": "public/app.js",
+  "scripts": {
+    "test": "pytest",
+    "test:ui": "python3 scripts/verify_ui.py"
+  },
+  "keywords": ["pod", "mockup", "lumen-matrix", "ink-blending", "print-on-demand", "sovereign", "etsy", "shopify"],
+  "author": "Neal Frazier Tech (@1nc0gn30)",
+  "license": "MIT"
+}

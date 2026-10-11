@@ -149,7 +149,7 @@
   const auditDetailsEl = document.getElementById("audit-details");
   const paywallWrapper = document.getElementById("paywall-wrapper");
   const paywallOverlay = document.getElementById("paywall-overlay");
-  const proBadge = document.getElementById("pro-badge");
+  const proBadge = document.getElementById("licenseBadge") || document.getElementById("pro-badge");
   const licenseModal = document.getElementById("license-modal");
   const openLicenseModalBtn = document.getElementById("open-license-modal-btn");
   const btnHeaderKey = document.getElementById("btnHeaderKey");
@@ -161,37 +161,74 @@
   const exportBtn = document.getElementById("export-mockup-btn");
   const downloadPackBtn = document.getElementById("download-pack-btn");
 
+  // Sovereign Toast Notification Engine
+  function showToast(message, type = "info") {
+    let container = document.getElementById("toast-container");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "toast-container";
+      container.className = "toast-container";
+      document.body.appendChild(container);
+    }
+    const toast = document.createElement("div");
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateY(10px)";
+      setTimeout(() => toast.remove(), 300);
+    }, 3500);
+  }
+
   // Check Pro Status
   function checkProStatus() {
     const params = new URLSearchParams(window.location.search);
     if (params.get("licensed") === "true") {
       localStorage.setItem("pod_mockup_pro_licensed", "true");
+      localStorage.setItem("pro_licensed", "true");
+      localStorage.setItem("agent_pod_mockup_pro", "true");
+      localStorage.setItem("zoth_pod_mockup_licensed", "true");
+      const cleanUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+      setTimeout(() => showToast("⭐ Pro License Activated via Checkout!", "success"), 250);
     }
 
     const isLicensed = localStorage.getItem("pod_mockup_pro_licensed") === "true" ||
+                       localStorage.getItem("pod_mockup_license") !== null ||
+                       localStorage.getItem("agent_pod_mockup_pro") === "true" ||
+                       localStorage.getItem("zoth_pod_mockup_licensed") === "true" ||
                        localStorage.getItem("pro_licensed") === "true";
 
+    const salesBanner = document.getElementById("salesBanner");
+    if (salesBanner) {
+      salesBanner.style.display = isLicensed ? "none" : "block";
+    }
+
+    const badge = document.getElementById("licenseBadge") || document.getElementById("pro-badge");
     if (isLicensed) {
       isProLicensed = true;
-      if (proBadge) {
-        proBadge.textContent = "⭐ PRO ACTIVE";
-        proBadge.classList.add("active");
-        proBadge.style.display = "inline-flex";
+      if (badge) {
+        badge.textContent = "⭐ PRO ACTIVE";
+        badge.classList.add("active");
+        badge.style.display = "inline-flex";
       }
       if (paywallWrapper) {
         paywallWrapper.classList.remove("paywall-content-locked");
+        paywallWrapper.classList.remove("paywall-blur");
         paywallWrapper.classList.add("paywall-content-unlocked");
       }
       if (paywallOverlay) paywallOverlay.style.display = "none";
     } else {
       isProLicensed = false;
-      if (proBadge) {
-        proBadge.textContent = "FREE TIER";
-        proBadge.classList.remove("active");
-        proBadge.style.display = "inline-flex";
+      if (badge) {
+        badge.textContent = "⚡ FREE TIER";
+        badge.classList.remove("active");
+        badge.style.display = "inline-flex";
       }
       if (paywallWrapper) {
         paywallWrapper.classList.add("paywall-content-locked");
+        paywallWrapper.classList.add("paywall-blur");
         paywallWrapper.classList.remove("paywall-content-unlocked");
       }
       if (paywallOverlay) paywallOverlay.style.display = "flex";
@@ -251,9 +288,10 @@
     img.onload = () => {
       customArtworkImg = img;
       updateCanvas();
+      showToast("Artwork loaded successfully!", "success");
     };
     img.onerror = () => {
-      alert("Unable to load image from URL. Please ensure it is a public direct image link or upload a local file.");
+      showToast("Unable to load image from URL. Please ensure it is a public direct image link or upload a local file.", "error");
     };
     img.src = url;
   }
@@ -504,7 +542,7 @@
     if (downloadPackBtn) {
       downloadPackBtn.addEventListener("click", () => {
         if (!requireProLicense("Download 10-Slot Pack")) return;
-        alert("Generating 10-Slot Etsy Master Listing Pack archives... Check your download folder.");
+        showToast("Generating 10-Slot Etsy Master Listing Pack archives... Check your download folder.", "success");
       });
     }
 
@@ -542,13 +580,19 @@
     if (activateKeyBtn && licenseKeyInput) {
       const handleActivation = () => {
         const key = licenseKeyInput.value.trim();
-        if (key.length >= 6) {
+        const valid = key.length >= 6 || key.toUpperCase().includes("PRO") || key.includes("@");
+        if (valid) {
           localStorage.setItem("pod_mockup_pro_licensed", "true");
+          localStorage.setItem("pod_mockup_license", key);
+          localStorage.setItem("agent_pod_mockup_pro", "true");
+          localStorage.setItem("zoth_pod_mockup_licensed", "true");
+          localStorage.setItem("pro_licensed", "true");
           isProLicensed = true;
           if (licenseStatusEl) {
             licenseStatusEl.textContent = "✅ License successfully activated! All pro features unlocked.";
             licenseStatusEl.style.color = "#10B981";
           }
+          showToast("⭐ Pro License Activated!", "success");
           setTimeout(() => {
             if (licenseModal) licenseModal.style.display = "none";
             checkProStatus();
@@ -559,6 +603,7 @@
             licenseStatusEl.textContent = "❌ Please enter a valid license key or order receipt email.";
             licenseStatusEl.style.color = "#EF4444";
           }
+          showToast("Please enter a valid license key or receipt email.", "error");
         }
       };
 
