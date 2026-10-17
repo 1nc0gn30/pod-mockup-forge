@@ -1,5 +1,9 @@
 # POD Mockup Forge
 
+> ⚡ **Live Web Application**: [https://pod-mockup-forge.netlify.app](https://pod-mockup-forge.netlify.app)  
+> 💳 **Unlock Pro Lifetime License ($19 One-Time, $0/mo)**: **[Instant Pro Unlock via Stripe](https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L)** *(Use promo code `FOUNDER25` for 25% off)*  
+> 🏆 **All-Access Sovereign Pro Bundle (All 44 Tools — $49 Lifetime)**: **[Get All 44 Studios via Stripe](https://buy.stripe.com/eVq14m5k16hW4Le0xWfw40M)**
+
 Mockup placement math, SVG scene specs, a 10-slot Etsy photo-pack planner and
 an Etsy listing-photo auditor for print-on-demand products. Pure stdlib.
 
