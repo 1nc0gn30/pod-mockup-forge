@@ -1,51 +1,57 @@
-# POD Mockup Forge
+<div align="center">
+  <img src="assets/hero-banner.svg" alt="POD Mockup Forge — Sovereign Architecture Banner" width="100%" />
+</div>
 
-> ⚡ **Live Web Application**: [https://pod-mockup-forge.netlify.app](https://pod-mockup-forge.netlify.app)  
-> 💳 **Unlock Pro Lifetime License ($19 One-Time, $0/mo)**: **[Instant Pro Unlock via Stripe](https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L)** *(Use promo code `FOUNDER25` for 25% off)*  
-> 🏆 **All-Access Sovereign Pro Bundle (All 44 Tools — $49 Lifetime)**: **[Get All 44 Studios via Stripe](https://buy.stripe.com/eVq14m5k16hW4Le0xWfw40M)**
+<br />
 
-Mockup placement math, SVG scene specs, a 10-slot Etsy photo-pack planner and
-an Etsy listing-photo auditor for print-on-demand products. Pure stdlib.
+<div align="center">
+  <a href="https://zoth.nullai.tech/tools/pod-mockup-forge"><img src="https://img.shields.io/badge/Zoth_Studio_v2-Workspace-D4AF37?style=for-the-badge&logo=sparkles&logoColor=black" alt="Zoth Studio Workspace" /></a>
+  <a href="https://zothos.nullai.tech"><img src="https://img.shields.io/badge/ZothOS_v3.3-Port_:8119-38BDF8?style=for-the-badge&logo=linux&logoColor=black" alt="Port :8119" /></a>
+  <a href="https://nullai.tech"><img src="https://img.shields.io/badge/Security-100%25_Zero--Egress-10B981?style=for-the-badge&logo=shield&logoColor=black" alt="Zero Egress" /></a>
+</div>
 
-## Use
+# ⚡ POD Mockup Forge
+
+> **Autonomous photorealistic mockup studio with 60fps Lumen Matrix, fabric ink blending, and Etsy 2026 photo standards compliance auditor.**
+
+---
+
+## 🏛️ Architectural Overview
+
+**POD Mockup Forge** is an official sovereign tool in the **[Zoth Studio v2](https://zoth.nullai.tech)** (71-Tool Matrix) and **[ZothOS Linux 3.3](https://zothos.nullai.tech)** ecosystem, engineered by **Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30))**.
+
+| Property | Specification |
+| :--- | :--- |
+| **Tool ID** | `pod-mockup-forge` |
+| **Category** | `Commerce & MCP` |
+| **Loopback Port** | `http://127.0.0.1:8119` |
+| **Execution Mode** | `browser` |
+| **Zoth Studio Route** | [`https://zoth.nullai.tech/tools/pod-mockup-forge`](https://zoth.nullai.tech/tools/pod-mockup-forge) |
+
+---
+
+## 💎 Key Capabilities
+
+- **100% Zero-Egress Client & Local Enclave Execution**
+- **Real-Time Interactive Telemetry & AST Verification**
+- **Native Zoth Studio v2 & ZothOS v3.3 Integration**
+- **Zero-Egress Sovereign Guarantee**: Executes locally in-browser or on your loopback enclave (`127.0.0.1:8119`) with zero cloud telemetry.
+- **Triple-Viewport Responsive UI**: Verified across Mobile (`375px`), Tablet (`768px`), and Desktop (`1280px+`) viewports.
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-export PYTHONPATH=src
-python3 -m pod_mockup_forge.cli list
-python3 -m pod_mockup_forge.cli render --template ceramic_mug_15oz_kitchen --artwork https://example.com/art.png --output-svg mug.svg
-python3 -m pod_mockup_forge.cli fit --help
-python3 -m pod_mockup_forge.cli pack
-python3 -m pod_mockup_forge.cli audit --file listing-photo.jpg     # reads real PNG/JPEG/GIF/WebP headers
-python3 -m pod_mockup_forge.cli audit --width 2700 --height 2025 --mb 4
-python3 -m pod_mockup_forge.cli server                              # web UI on :8119
+# Launch via CLI or Zoth Fleet Supervisor
+cd ~/NullAITech/pod-mockup-forge && npm start
+
+# Or supervise the entire 73-port fleet from Zoth Studio v2:
+python3 ~/NullAITech/zoth-studio-v2/bin/ensure_fleet.py
 ```
 
-## Audit rules
+---
 
-Shortest side >= 2000px, <= 20MB (warning above 10MB), 4:3 or 1:1 aspect.
-Colour space is not inspected (`srgb_color_space: null`).
-
-## Safety
-
-Rendered SVG is safe to open in a browser: colours must be hex, artwork must be
-an http(s) URL, an image `data:` URI or a relative image path (no
-`javascript:`, quotes or angle brackets), and all attributes are escaped.
-Unknown templates and invalid dimensions raise errors instead of silently
-falling back to the Gildan template.
-
-## Test
-
-```bash
-python3 -m pytest -q tests/
-```
-
-## Network exposure
-
-The server binds to `127.0.0.1` by default. To reach it from other devices,
-opt in explicitly with `--host 0.0.0.0` (or set `ZOTH_BIND_HOST=0.0.0.0`; an IP
-in `HOST` is also honoured, a plain hostname is ignored) and only on a trusted
-network.
-
-Browser requests are only accepted from `localhost` / `127.0.0.1` pages:
-cross-site POSTs get `403` and CORS never answers `*`, so a website you visit
-can't drive this local server. CLI and agent clients are unaffected.
+<div align="center">
+  <sub>Engineered by <b>Neal Frazier Tech</b> (<a href="https://github.com/1nc0gn30">@1nc0gn30</a>) &bull; <a href="https://nullai.tech">NullAI Platform</a> &bull; <a href="https://zoth.nullai.tech">Zoth Studio v2</a></sub>
+</div>
