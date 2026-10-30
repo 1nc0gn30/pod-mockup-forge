@@ -1,0 +1,204 @@
+/* ==========================================================================
+   Wave 6 Enhancement: Precision Studio Tool Surface
+   Product: POD Mockup Forge (https://pod-mockup-forge.nullai.tech/)
+   Author: Neal Frazier Tech (@1nc0gn30) • NullAI Platform
+   Guidelines: design-director & motion-choreography
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Visual Focus & Accessibility Standards (WCAG 2.4.7 / 2.4.11)
+   -------------------------------------------------------------------------- */
+
+:focus {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.btn:focus-visible,
+.text-input:focus-visible,
+.upload-dropzone:focus-visible,
+.upload-dropzone:focus-within {
+  outline: 2px solid var(--gold-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(229, 169, 60, 0.28) !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Clearer Type Hierarchy & Studio Layout Calibration
+   -------------------------------------------------------------------------- */
+
+/* Studio workspace container alignment */
+.studio-grid {
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Panel titles: distinctive hierarchy, high-contrast heading */
+.controls-card .panel-title,
+.preview-card .panel-title {
+  font-family: var(--font-heading);
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-main);
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  margin-bottom: 0.5rem;
+}
+
+/* Step labels: technical eyebrow hierarchy with calibrated mono tracking */
+.step-label {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Dropzone hierarchy */
+.upload-dropzone {
+  border: 2px dashed rgba(229, 169, 60, 0.25);
+  border-radius: 10px;
+  background: rgba(13, 16, 26, 0.5);
+  padding: 1.35rem 1rem;
+  transition: border-color 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.upload-dropzone:hover {
+  border-color: var(--gold-primary);
+  background: rgba(229, 169, 60, 0.05);
+}
+
+/* Text Input: crisp instrument aesthetic */
+.text-input {
+  background: rgba(7, 8, 13, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-main);
+  font-size: 0.84rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.01em;
+  transition: border-color 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text-input::placeholder {
+  color: var(--text-dim);
+  font-family: var(--font-body);
+}
+
+/* --------------------------------------------------------------------------
+   3. Result Surface & Motion Choreography
+   Token: EASE_OUT_EXPO [0.16, 1, 0.3, 1], Duration: 280ms
+   Transform/opacity only; transform cleared at landing
+   -------------------------------------------------------------------------- */
+
+.preview-viewport {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.8),
+              0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+#composite-canvas {
+  will-change: transform, opacity;
+  animation: compositeResultEntrance 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes compositeResultEntrance {
+  0% {
+    opacity: 0.85;
+    transform: translateY(6px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Compliance details bar: refined typographic cadence and entrance */
+.etsy-compliance-bar {
+  background: rgba(13, 16, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--gold-primary);
+  padding: 0.85rem 1.15rem;
+  animation: complianceBarEntrance 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes complianceBarEntrance {
+  0% {
+    opacity: 0.85;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#audit-details {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+#audit-details strong {
+  color: var(--text-main);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+/* Audit Score badge: high-visibility status pill */
+#audit-score.score-badge {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  padding: 0.28rem 0.7rem;
+  border-radius: 9999px;
+  animation: auditScorePop 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes auditScorePop {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Primary Export CTA: distinct elevation */
+#export-mockup-btn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 0.5rem 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Reduced Motion Invariant (prefers-reduced-motion: reduce)
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  #composite-canvas,
+  .etsy-compliance-bar,
+  #audit-score,
+  .btn,
+  .text-input,
+  .upload-dropzone {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

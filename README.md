@@ -1,16 +1,17 @@
 <div align="center">
-  <img src="assets/hero-banner.svg" alt="POD Mockup Forge — Sovereign Architecture Banner" width="100%" />
+  <img src="assets/banner.png" alt="POD Mockup Forge — Sovereign Architecture Banner" width="100%" />
 </div>
 
 <br />
 
 <div align="center">
   <a href="https://zoth.nullai.tech/tools/pod-mockup-forge"><img src="https://img.shields.io/badge/Zoth_Studio_v2-Workspace-D4AF37?style=for-the-badge&logo=sparkles&logoColor=black" alt="Zoth Studio Workspace" /></a>
-  <a href="https://zothos.nullai.tech"><img src="https://img.shields.io/badge/ZothOS_v3.3-Port_:8119-38BDF8?style=for-the-badge&logo=linux&logoColor=black" alt="Port :8119" /></a>
+  <a href="http://127.0.0.1:8119"><img src="https://img.shields.io/badge/ZothOS_v3.3-Port_:8119-38BDF8?style=for-the-badge&logo=linux&logoColor=black" alt="Port :8119" /></a>
   <a href="https://nullai.tech"><img src="https://img.shields.io/badge/Security-100%25_Zero--Egress-10B981?style=for-the-badge&logo=shield&logoColor=black" alt="Zero Egress" /></a>
+  <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X"><img src="https://img.shields.io/badge/☕_Buy_Us_a_Coffee-Stripe-D4AF37?style=for-the-badge" alt="Buy Us a Coffee" /></a>
 </div>
 
-# ⚡ POD Mockup Forge
+# ⚡ POD Mockup Forge (v2.5.0)
 
 > **Autonomous photorealistic mockup studio with 60fps Lumen Matrix, fabric ink blending, and Etsy 2026 photo standards compliance auditor.**
 
@@ -18,37 +19,89 @@
 
 ## 🏛️ Architectural Overview
 
-**POD Mockup Forge** is an official sovereign tool in the **[Zoth Studio v2](https://zoth.nullai.tech)** (71-Tool Matrix) and **[ZothOS Linux 3.3](https://zothos.nullai.tech)** ecosystem, engineered by **Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30))**.
+**POD Mockup Forge** is a sovereign visual commerce powerhouse in the **[Zoth Studio v2](https://zoth.nullai.tech)** arsenal and **[ZothOS Linux 3.3](https://zothos.nullai.tech)** ecosystem, engineered by **Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30))**.
 
 | Property | Specification |
 | :--- | :--- |
 | **Tool ID** | `pod-mockup-forge` |
 | **Category** | `Commerce & MCP` |
-| **Loopback Port** | `http://127.0.0.1:8119` |
-| **Execution Mode** | `browser` |
-| **Zoth Studio Route** | [`https://zoth.nullai.tech/tools/pod-mockup-forge`](https://zoth.nullai.tech/tools/pod-mockup-forge) |
+| **Local Port** | `http://127.0.0.1:8119` |
+| **Execution Mode** | Native Python Daemon & Browser Client |
+| **Zoth Studio Route** | `http://127.0.0.1:3000/tools/pod-mockup-forge` |
+| **License** | 100% Free & Open Access (Zero Paywalls) |
 
 ---
 
-## 💎 Key Capabilities
+## 💎 What It Does & How It Works
 
-- **100% Zero-Egress Client & Local Enclave Execution**
-- **Real-Time Interactive Telemetry & AST Verification**
-- **Native Zoth Studio v2 & ZothOS v3.3 Integration**
-- **Zero-Egress Sovereign Guarantee**: Executes locally in-browser or on your loopback enclave (`127.0.0.1:8119`) with zero cloud telemetry.
-- **Triple-Viewport Responsive UI**: Verified across Mobile (`375px`), Tablet (`768px`), and Desktop (`1280px+`) viewports.
+- **Photorealistic Apparel & Merchandise Scenes**: Generates high-fidelity mockups for top Print-on-Demand products:
+  - `gildan_18000_flatlay`: Heavy blend sweatshirt on rustic dark oak wood.
+  - `comfort_colors_1717_hanger`: Garment-dyed tee on minimalist brass hanger with sunlit stucco wall.
+  - `bella_canvas_3001_model`: Unisex jersey tee in urban natural daylight.
+  - `ceramic_mug_15oz_kitchen`: Gloss ceramic mug on Carrara marble counter with French press.
+  - `canvas_gallery_wrap_livingroom`: Stretched canvas in Scandinavian minimalist interior.
+  - `matte_poster_wood_frame`: Museum-grade archival poster in solid natural oak frame.
+  - `canvas_tote_farmers_market`: Heavyweight market tote with fresh florals.
+  - `phone_case_flatlay`: Impact dual-layer phone case in executive obsidian EDC flat lay.
+- **Fabric Ink Blending & Dynamic Lumen Matrix**: Composites designs using accurate substrate blend modes (multiply, overlay, realistic fiber weave displacement) and lighting highlights.
+- **Etsy 2026 Photo Standards Auditor**: Evaluates image resolutions (minimum 2000px shortest side), aspect ratios (1:1 square, 4:3 landscape), sRGB color profile compliance, and under-20MB size limits.
+- **10-Slot Carousel Listing Architect**: Plans structured 10-slide visual presentations for optimal conversion (Hero Flat Lay, Lifestyle In-Use, Scale Comparison, Color Swatch Grid, Detail Close-Up, Size Chart).
 
 ---
 
 ## 🚀 Quick Start
 
 ```bash
-# Launch via CLI or Zoth Fleet Supervisor
-cd ~/NullAITech/pod-mockup-forge && npm start
+# Clone and launch the standalone daemon on port 8119
+git clone https://github.com/1nc0gn30/pod-mockup-forge.git
+cd pod-mockup-forge
+python3 server.py --port 8119
 
-# Or supervise the entire 73-port fleet from Zoth Studio v2:
-python3 ~/NullAITech/zoth-studio-v2/bin/ensure_fleet.py
+# Query daemon health and templates:
+curl -s http://127.0.0.1:8119/health
+curl -s http://127.0.0.1:8119/api/templates
 ```
+
+---
+
+## 💻 ZothOS CLI & MCP Commands
+
+The sovereign binary `pod-mockup-forge` is pre-installed in `/usr/local/bin` and `~/.local/bin`:
+
+```bash
+# Verify installation & status
+pod-mockup-forge --version
+pod-mockup-forge --status
+pod-mockup-forge --json
+
+# List available templates
+pod-mockup-forge list
+pod-mockup-forge list --category apparel --json
+
+# Audit image against Etsy 2026 seller photo standards
+pod-mockup-forge audit --width 2000 --height 2000 --mb 2.5
+pod-mockup-forge audit --file path/to/mockup.png
+
+# Generate mockup scene render spec
+pod-mockup-forge render --template gildan_18000_flatlay --artwork "https://example.com/art.png" --color "#F5F5DC"
+
+# Plan 10-slot carousel listing pack
+pod-mockup-forge pack --json
+
+# Launch server daemon
+pod-mockup-forge server --port 8119
+```
+
+---
+
+## ☕ 100% Free & Open-Access Support Architecture
+
+Every tool engineered by Neal Frazier Tech is **100% free, open, and unlocked by default**. There are zero paywalls, zero license locks, and zero feature gates.
+
+If this tool empowers your business or automates your product photography, consider supporting development:
+
+- **☕ Buy Us a Coffee (Stripe)**: [https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
+- **◎ Solana Tip Address**: `GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`
 
 ---
 

@@ -1,0 +1,330 @@
+/* ==========================================================================
+   Wave 6 Enhancement: Precision Instrument Surface States
+   Product: POD Mockup Forge (https://pod-mockup-forge.nullai.tech/)
+   Author: Neal Frazier Tech (@1nc0gn30) • NullAI Platform
+   Guidelines: design-director & motion-choreography
+   Concept: Tactile Calibrated Precision (Focus-visible, hover, empty & error states)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Keyboard Accessibility & Focus-Visible States (WCAG 2.4.7 / 2.4.11)
+   -------------------------------------------------------------------------- */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.btn:focus-visible,
+.text-input:focus-visible,
+.upload-dropzone:focus-visible,
+.upload-dropzone:focus-within,
+.slot-card:focus-visible,
+#close-license-modal-btn:focus-visible,
+#paywall-key-btn:focus-visible,
+#open-license-modal-btn:focus-visible,
+.brand-group:focus-visible {
+  outline: 2px solid var(--gold-primary) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 5px rgba(229, 169, 60, 0.32) !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Interactive Hover & Tactile Press States
+   Motion Token: 140ms cubic-bezier(0.16, 1, 0.3, 1)
+   -------------------------------------------------------------------------- */
+
+/* Brand group header hover */
+.brand-group {
+  transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-group:hover {
+  opacity: 0.92;
+}
+
+.brand-group:hover .brand-logo {
+  filter: drop-shadow(0 0 14px rgba(229, 169, 60, 0.55));
+  transition: filter 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Primary Action Buttons */
+.btn-primary {
+  transition: transform 0.14s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.14s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 22px rgba(229, 169, 60, 0.55), 0 0 0 1px rgba(229, 169, 60, 0.6);
+}
+
+.btn-primary:active {
+  transform: translateY(0.5px) scale(0.985);
+  box-shadow: 0 2px 8px rgba(229, 169, 60, 0.4);
+}
+
+/* Secondary Buttons */
+.btn-secondary {
+  transition: transform 0.14s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.14s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.14s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(229, 169, 60, 0.45);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0.5px) scale(0.985);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Solana Checkout Buttons */
+.btn-solana {
+  transition: transform 0.14s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-solana:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 24px rgba(20, 241, 149, 0.45), 0 0 0 1px rgba(20, 241, 149, 0.5);
+}
+
+.btn-solana:active {
+  transform: translateY(0.5px) scale(0.985);
+  box-shadow: 0 2px 8px rgba(153, 69, 255, 0.3);
+}
+
+/* Link-style Action Buttons */
+.btn-link {
+  transition: color 0.14s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-link:hover {
+  color: var(--gold-primary);
+  opacity: 1;
+}
+
+.btn-link:active {
+  opacity: 0.8;
+}
+
+/* Modal Close Button */
+#close-license-modal-btn {
+  border-radius: 6px;
+  padding: 0.15rem 0.45rem;
+  line-height: 1;
+  transition: color 0.14s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.14s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#close-license-modal-btn:hover {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.08);
+}
+
+#close-license-modal-btn:active {
+  transform: scale(0.95);
+}
+
+/* Text Input Hover */
+.text-input {
+  transition: border-color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text-input:hover:not(:focus):not(:disabled) {
+  border-color: rgba(229, 169, 60, 0.4);
+  background: rgba(13, 16, 26, 0.8);
+}
+
+/* Upload Dropzone Interactive Hover */
+.upload-dropzone {
+  transition: border-color 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.upload-dropzone:hover {
+  border-color: var(--gold-primary);
+  background: rgba(229, 169, 60, 0.06);
+  transform: translateY(-1px);
+}
+
+.upload-dropzone:active {
+  transform: translateY(0);
+}
+
+/* Carousel Slot Cards */
+.slot-card {
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slot-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(229, 169, 60, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* Footer Links Hover */
+.footer-links a {
+  position: relative;
+  transition: color 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-links a:hover {
+  color: var(--gold-primary);
+}
+
+/* --------------------------------------------------------------------------
+   3. Empty State Presentations (Zero-Layout-Shift Fallbacks)
+   -------------------------------------------------------------------------- */
+
+/* Empty templates container placeholder */
+#templates-container:empty {
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+#templates-container:empty::before {
+  content: "Loading mockup presets...";
+}
+
+/* Empty swatches row placeholder */
+#swatches-container:empty {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#swatches-container:empty::before {
+  content: "Awaiting template palette...";
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+/* Empty audit details bar */
+#audit-details:empty {
+  min-height: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+#audit-details:empty::before {
+  content: "Calculating Etsy 2026 compliance metrics...";
+  color: var(--text-dim);
+  font-style: italic;
+  font-size: 0.78rem;
+}
+
+/* Empty license status container */
+#license-status:empty {
+  display: none;
+}
+
+/* Empty toast container */
+#toast-container:empty {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. Semantic Error & Warning Presentations
+   -------------------------------------------------------------------------- */
+
+/* User Invalid / Error Input State */
+.text-input:user-invalid,
+.text-input:invalid:not(:placeholder-shown) {
+  border-color: var(--error) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25) !important;
+}
+
+.text-input:user-invalid:focus-visible,
+.text-input:invalid:not(:placeholder-shown):focus-visible {
+  outline: 2px solid var(--error) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.35) !important;
+}
+
+/* Specific URL input invalid presentation */
+#artwork-url-input:invalid:not(:placeholder-shown) {
+  border-color: var(--error) !important;
+  color: #FCA5A5;
+}
+
+/* Error Toast Visual Refinement */
+.toast.toast-error {
+  border-left: 4px solid var(--error);
+  background: rgba(28, 14, 18, 0.96);
+  border-top: 1px solid rgba(239, 68, 68, 0.3);
+  border-right: 1px solid rgba(239, 68, 68, 0.3);
+  border-bottom: 1px solid rgba(239, 68, 68, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 20px rgba(239, 68, 68, 0.2);
+}
+
+/* Warning Score Badge Presentation */
+.score-badge.warning {
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid #F59E0B;
+  color: #FBBF24;
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+/* Mandatory Slot Tag Contrast */
+.slot-mandatory {
+  letter-spacing: 0.05em;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   5. Prefers-Reduced-Motion Strict Invariant
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transform: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .btn:hover,
+  .btn:active,
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-secondary:hover,
+  .btn-secondary:active,
+  .btn-solana:hover,
+  .btn-solana:active,
+  .slot-card:hover,
+  .upload-dropzone:hover,
+  .upload-dropzone:active,
+  #close-license-modal-btn:hover,
+  #close-license-modal-btn:active {
+    transform: none !important;
+  }
+}
