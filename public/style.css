@@ -379,6 +379,9 @@ body::before {
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
   padding: 1.5rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -389,14 +392,14 @@ body::before {
 /* Two-Column Studio Workspace */
 .studio-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1.75rem;
   margin-bottom: 2.5rem;
 }
 
 @media (max-width: 1024px) {
   .studio-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

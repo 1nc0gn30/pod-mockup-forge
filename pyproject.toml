@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "pod-mockup-forge"
 version = "1.0.0"
 description = "Autonomous Photorealistic Mockup Synthesis & PSD-Grade Rendering Engine"
-authors = [{ name = "Neal Frazier", email = "neal@nullai.tech" }]
+authors = [{ name = "1nc0gn30", email = "neal@nullai.tech" }]
 license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.10"

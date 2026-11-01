@@ -35,6 +35,6 @@
 
 ### Scene 4: Instant Sovereign Launch (11.5s – 15.0s)
 - **Visual**: The frosted glass paywall dissolves. Header badge illuminates `⭐ PRO ACTIVE`.
-- **CTA**: "POD Mockup Forge • $19 Lifetime Founding Access".
-- **Attribution**: "Engineered by Neal Frazier Tech • nullai.tech".
+- **CTA**: "POD Mockup Forge • $0 Lifetime Founding Access".
+- **Attribution**: "Engineered by 1nc0gn30 • NullAI • nullai.tech".
 - **Audio**: Harmonious chord resolve with warm sub-bass pulse.
