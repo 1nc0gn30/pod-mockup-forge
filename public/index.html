@@ -308,6 +308,22 @@
   <!-- Scripts -->
   <script src="/hero_canvas.js"></script>
   <script src="/app.js"></script>
-  <script src="/assets/sovereign-upgrade.js" defer></script>
+  
+
+  <script src="/sovereign_tutorial.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      if (window.createSovereignTutorial) {
+        window.createSovereignTutorial({
+          toolId: "pod-mockup-forge",
+          toolName: "POD Mockup Forge",
+          tagline: "Create photorealistic apparel and product mockups in seconds!",
+          accentColor: "#EC4899",
+          steps: [{"icon": "\ud83d\uddbc\ufe0f", "title": "Real-World Warp & Shadows", "desc": "Warp your 2D designs naturally around wrinkles, folds, and natural fabric lighting."}, {"icon": "\ud83d\udc55", "title": "50+ Product Templates", "desc": "Preview on heavy cotton tees, ceramic mugs, canvas prints, and embroidered hats."}, {"icon": "\ud83d\udcbe", "title": "Instant 4K Export", "desc": "Download ultra-crisp transparent PNGs ready to upload directly to Etsy or Shopify."}]
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
