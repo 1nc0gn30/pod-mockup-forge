@@ -18,7 +18,14 @@ def main():
         prog="pod-mockup-forge",
         description="Autonomous Photorealistic Print-on-Demand Mockup Generator & Etsy Photo Auditor"
     )
+    parser.add_argument("--version", action="version", version="pod-mockup-forge 2.5.0")
+    parser.add_argument("--status", action="store_true", help="Print service status and template summary")
+    parser.add_argument("--json", action="store_true", help="Output JSON payload")
     subparsers = parser.add_subparsers(dest="command", help="Available subcommands")
+
+    # Command: status
+    p_status = subparsers.add_parser("status", help="Print service status and template summary")
+    p_status.add_argument("--json", action="store_true", help="Output raw JSON")
 
     # Command: list
     p_list = subparsers.add_parser("list", help="List all available mockup templates")
@@ -69,6 +76,22 @@ def main():
 
 
 def _run(args, parser):
+    if args.status or args.command == "status" or (args.json and not args.command):
+        templates = get_all_templates()
+        payload = {
+            "service": "pod-mockup-forge",
+            "version": "2.5.0",
+            "status": "ready",
+            "default_port": 8119,
+            "local_url": "http://127.0.0.1:8119",
+            "template_count": len(templates),
+            "template_ids": [t["id"] for t in templates],
+        }
+        if getattr(args, "json", False):
+            print(json.dumps(payload, indent=2))
+        else:
+            print(f"POD Mockup Forge v{payload['version']} | Status: {payload['status']} | Port: {payload['default_port']} | Templates: {payload['template_count']}")
+        return
 
     if args.command == "list":
         templates = get_all_templates()

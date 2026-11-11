@@ -1,167 +1,162 @@
 <div align="center">
-  <img src="assets/banner.png" alt="POD Mockup Forge — Sovereign Architecture Banner" width="100%" />
+  <img src="assets/hero-banner.svg" alt="POD Mockup Forge Banner" width="100%" />
 </div>
 
-<br />
+# POD Mockup Forge
 
-<div align="center">
-  <a href="https://zoth.nullai.tech/tools/pod-mockup-forge"><img src="https://img.shields.io/badge/Zoth_Studio_v2-Workspace-D4AF37?style=for-the-badge&logo=sparkles&logoColor=black" alt="Zoth Studio Workspace" /></a>
-  <a href="http://127.0.0.1:8119"><img src="https://img.shields.io/badge/ZothOS_v3.3-Port_:8119-38BDF8?style=for-the-badge&logo=linux&logoColor=black" alt="Port :8119" /></a>
-  <a href="https://nullai.tech"><img src="https://img.shields.io/badge/Security-100%25_Zero--Egress-10B981?style=for-the-badge&logo=shield&logoColor=black" alt="Zero Egress" /></a>
-  <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X"><img src="https://img.shields.io/badge/☕_Buy_Us_a_Coffee-Stripe-D4AF37?style=for-the-badge" alt="Buy Us a Coffee" /></a>
-</div>
+Print-on-Demand mockup scene renderer, printable zone aspect-fit calculator, 10-slot Etsy carousel planner, and Etsy seller photo compliance auditor.
 
-# ⚡ POD Mockup Forge (v2.5.0)
-
-> **Autonomous photorealistic mockup studio with 60fps Lumen Matrix, fabric ink blending, and Etsy 2026 photo standards compliance auditor.**
+- **Repository**: `https://github.com/1nc0gn30/pod-mockup-forge`
+- **Zoth Studio v2 Dossier**: `https://zoth.nullai.tech/tools/pod-mockup-forge`
+- **Local Workstation**: `http://127.0.0.1:8119`
+- **Version**: `2.5.0`
+- **Author**: 1nc0gn30 (`@1nc0gn30`, `https://1nc0gn30.si`) • NullAI (`https://nullai.tech`)
+- **License**: MIT (100% free and open-source; zero paywalls)
 
 ---
 
-## 🏛️ Architectural Overview
+## Overview
 
-**POD Mockup Forge** is a sovereign visual commerce powerhouse in the **[Zoth Studio v2](https://zoth.nullai.tech)** arsenal and **[ZothOS Linux 3.3](https://zothos.nullai.tech)** ecosystem, engineered by **1nc0gn30 • NullAI ([@1nc0gn30](https://github.com/1nc0gn30))**.
+POD Mockup Forge generates SVG and HTML5 Canvas product mockups across apparel, drinkware, wall art, and accessory templates while auditing output dimensions, aspect ratios, and file sizes against Etsy photo requirements. The Python HTTP server, CLI, binary image header prober, and stdio MCP server run entirely on the Python 3.10+ standard library.
 
-| Property | Specification |
-| :--- | :--- |
-| **Tool ID** | `pod-mockup-forge` |
-| **Category** | `Commerce & MCP` |
-| **Local Port** | `http://127.0.0.1:8119` |
-| **Execution Mode** | Native Python Daemon & Browser Client |
-| **Zoth Studio Route** | `http://127.0.0.1:3000/tools/pod-mockup-forge` |
-| **License** | 100% Free & Open Access (Zero Paywalls) |
+### Core Modules
+
+- **Template Library (`templates.py`)**: Structured product definitions (`gildan_18000_flatlay`, `comfort_colors_1717_hanger`, ceramic mugs, canvas wall art, tote bags) with canvas dimensions, printable zone bounding coordinates, blend modes, and garment color swatches.
+- **Composite Engine (`composite_engine.py`)**: Computes aspect-fit scaling and offset coordinates, generates layered SVG mockup scenes, and optionally applies diagonal anti-scraper watermark overlays.
+- **Binary Image Header Probe (`image_probe.py`)**: Reads pixel width, pixel height, and file size directly from PNG, JPEG, GIF, and WebP files without external imaging libraries.
+- **Etsy 2026 Photo Compliance Auditor (`etsy_specs.py`)**: Evaluates minimum long-edge resolution (`>=2000 px`), thumbnail aspect ratio (`4:3` / `5:4` / `1:1`), and file size caps (`<=20 MB`), plus generates a 10-slot Etsy listing photo carousel plan.
 
 ---
 
-## 💎 What It Does & How It Works
+## Architecture
 
-- **Photorealistic Apparel & Merchandise Scenes**: Generates high-fidelity mockups for top Print-on-Demand products:
-  - `gildan_18000_flatlay`: Heavy blend sweatshirt on rustic dark oak wood.
-  - `comfort_colors_1717_hanger`: Garment-dyed tee on minimalist brass hanger with sunlit stucco wall.
-  - `bella_canvas_3001_model`: Unisex jersey tee in urban natural daylight.
-  - `ceramic_mug_15oz_kitchen`: Gloss ceramic mug on Carrara marble counter with French press.
-  - `canvas_gallery_wrap_livingroom`: Stretched canvas in Scandinavian minimalist interior.
-  - `matte_poster_wood_frame`: Museum-grade archival poster in solid natural oak frame.
-  - `canvas_tote_farmers_market`: Heavyweight market tote with fresh florals.
-  - `phone_case_flatlay`: Impact dual-layer phone case in executive obsidian EDC flat lay.
-- **Fabric Ink Blending & Dynamic Lumen Matrix**: Composites designs using accurate substrate blend modes (multiply, overlay, realistic fiber weave displacement) and lighting highlights.
-- **Etsy 2026 Photo Standards Auditor**: Evaluates image resolutions (minimum 2000px shortest side), aspect ratios (1:1 square, 4:3 landscape), sRGB color profile compliance, and under-20MB size limits.
-- **10-Slot Carousel Listing Architect**: Plans structured 10-slide visual presentations for optimal conversion (Hero Flat Lay, Lifestyle In-Use, Scale Comparison, Color Swatch Grid, Detail Close-Up, Size Chart).
+```
+pod-mockup-forge/
+├── server.py                              # Daemon entrypoint binding 127.0.0.1:8119
+├── bin/
+│   ├── pod-mockup-forge                   # CLI entrypoint wrapper
+│   └── pod-mockup-forge-tui               # ZothOS v3.4.0 Unicode U+2800 Braille TUI
+├── src/pod_mockup_forge/
+│   ├── templates.py                       # Apparel, drinkware, wall art & accessory templates
+│   ├── composite_engine.py                # Aspect-fit bounding math & SVG scene synthesizer
+│   ├── image_probe.py                     # Pure-stdlib PNG/JPEG/GIF/WebP dimension reader
+│   ├── etsy_specs.py                      # Etsy photo compliance auditor & 10-slot pack planner
+│   ├── server.py                          # Threaded HTTP server with Origin CSRF guard
+│   ├── mcp_server.py                      # JSON-RPC 2.0 stdio MCP server (6 tools)
+│   └── cli.py                             # Command-line interface
+├── public/                                # Browser Canvas compositor & audit workstation
+└── tests/                                 # Unit, hardening, bind-host & CSRF origin tests
+```
+
+### REST API Endpoints (`http://127.0.0.1:8119`)
+
+| Method | Path | Description |
+| :--- | :--- | :--- |
+| `GET` | `/health` | Service health status, version (`2.5.0`), port, and uptime |
+| `GET` | `/api/stats` | Session telemetry counters (`mockups_rendered`, `photo_audits_performed`, `packs_planned`) |
+| `GET` | `/api/templates` | List all mockup templates, print zone coordinates, and color palettes |
+| `GET` | `/api/carousel_plan` | Return the 10-slot Etsy listing photo carousel plan |
+| `POST` | `/api/render` | Render SVG/JSON mockup scene spec (`template_id`, `artwork_url`, `color_hex`, `watermark`) |
+| `POST` | `/api/audit` | Audit image compliance (`width_px`, `height_px`, `file_size_mb`) |
 
 ---
 
-## 🚀 Quick Start
+## Quickstart
 
 ```bash
-# Clone and launch the standalone daemon on port 8119
 git clone https://github.com/1nc0gn30/pod-mockup-forge.git
 cd pod-mockup-forge
-python3 server.py --port 8119
 
-# Query daemon health and templates:
+# Optional editable install for the console script
+pip install -e .
+
+# Start the local HTTP server on 127.0.0.1:8119
+python3 server.py --port 8119
+```
+
+Verify the server from another terminal:
+
+```bash
 curl -s http://127.0.0.1:8119/health
 curl -s http://127.0.0.1:8119/api/templates
 ```
 
 ---
 
-## 💻 ZothOS CLI & MCP Commands
+## CLI & MCP Usage
 
-The sovereign binary `pod-mockup-forge` is pre-installed in `/usr/local/bin` and `~/.local/bin`:
-
-```bash
-# Verify installation & status
-pod-mockup-forge --version
-pod-mockup-forge --status
-pod-mockup-forge --json
-
-# List available templates
-pod-mockup-forge list
-pod-mockup-forge list --category apparel --json
-
-# Audit image against Etsy 2026 seller photo standards
-pod-mockup-forge audit --width 2000 --height 2000 --mb 2.5
-pod-mockup-forge audit --file path/to/mockup.png
-
-# Generate mockup scene render spec
-pod-mockup-forge render --template gildan_18000_flatlay --artwork "https://example.com/art.png" --color "#F5F5DC"
-
-# Plan 10-slot carousel listing pack
-pod-mockup-forge pack --json
-
-# Launch server daemon
-pod-mockup-forge server --port 8119
-```
-
----
-
-## ☕ 100% Free & Open-Access Support Architecture
-
-Every tool engineered by 1nc0gn30 • NullAI is **100% free, open, and unlocked by default**. There are zero paywalls, zero license locks, and zero feature gates.
-
-If this tool empowers your business or automates your product photography, consider supporting development:
-
-- **☕ Buy Us a Coffee (Stripe)**: [https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
-- **◎ Solana Tip Address**: `GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`
-
----
-
-<div align="center">
-  <sub>Engineered by <b>1nc0gn30 • NullAI</b> (<a href="https://github.com/1nc0gn30">@1nc0gn30</a>) &bull; <a href="https://nullai.tech">NullAI Platform</a> &bull; <a href="https://zoth.nullai.tech">Zoth Studio v2</a></sub>
-</div>
-
----
-
-## 🏛️ ZothOS v3.4, Zoth Studio v2 & Obsidian Second Brain Ecosystem
-
-```mermaid
-flowchart LR
-    subgraph ZothOS["🐧 ZothOS v3.4 CLI & Braille TUI"]
-        CLI["pod-mockup-forge --help / --json"]
-        TUI["pod-mockup-forge-tui<br/>Unicode U+2800 2x4 Braille"]
-    end
-
-    subgraph Workstation["⚡ Sovereign Workstation"]
-        WEB["http://127.0.0.1:8119<br/>REST API & /health"]
-    end
-
-    subgraph Studio["🌌 Zoth Studio v2 & ZothOS-Lite"]
-        GODMODE["http://127.0.0.1:3000/tools/pod-mockup-forge<br/>God-Mode Workstation"]
-        LITE["http://127.0.0.1:8145<br/>ZothOS-Lite Web Desktop"]
-    end
-
-    subgraph SecondBrain["💎 Obsidian Second Brain & STDP"]
-        TRACKER["http://127.0.0.1:8151<br/>Zoth Obsidian Tracker"]
-        NEURO["http://127.0.0.1:8094<br/>Neuro-Memory STDP Cortex"]
-        NOTE["Studio/Tools/Studio pod-mockup-forge.md"]
-    end
-
-    CLI --> WEB
-    TUI --> WEB
-    WEB <--> GODMODE
-    WEB <--> LITE
-    WEB --> TRACKER
-    TRACKER <--> NOTE
-    NOTE <--> NEURO
-```
-
-### Cross-Surface Integration Matrix
-
-| Surface | Endpoint / Binary | Capabilities |
-| :--- | :--- | :--- |
-| **Standalone Workstation** | `http://127.0.0.1:8119` | 100% Free & Open-Access Web Deck, live `/health` & REST telemetry |
-| **Zoth Studio v2 Route** | `http://127.0.0.1:3000/tools/pod-mockup-forge` | Interactive God-Mode component inside Zoth Studio (`https://zoth.nullai.tech`) |
-| **ZothOS v3.4 CLI & TUI** | `pod-mockup-forge` / `pod-mockup-forge-tui` | Global binary in `/usr/local/bin/` with Unicode `U+2800` Braille TUI & `--json` output |
-| **ZothOS-Lite Web Desktop** | `http://127.0.0.1:8145` | Browser-native KDE-style window manager & terminal launcher |
-| **Zoth Obsidian Tracker** | `http://127.0.0.1:8151` | Interactive Obsidian Second Brain vault explorer (`~/Documents/Obsidian Vault/Studio/Tools/Studio pod-mockup-forge.md`) |
-| **Neuro-Memory STDP Cortex** | `http://127.0.0.1:8094` | 3-Factor STDP synaptic memory daemon & 21-tool MCP server |
+### CLI Commands (`pod-mockup-forge` / `./bin/pod-mockup-forge`)
 
 ```bash
-# Inspect CLI & Unicode U+2800 Braille TUI on ZothOS v3.4
-pod-mockup-forge --help
-pod-mockup-forge-tui --status
-pod-mockup-forge-tui --json
+# Inspect CLI options, version, and JSON status
+./bin/pod-mockup-forge --help
+./bin/pod-mockup-forge --version
+./bin/pod-mockup-forge --status
+./bin/pod-mockup-forge --json
 
-# Verify Second Brain Vault & 12-Step Verification Gallery on :8151
-zoth-obsidian-tracker --verify
+# List available templates (optionally filtered by category)
+./bin/pod-mockup-forge list --category apparel --json
+
+# Render a mockup SVG scene specification
+./bin/pod-mockup-forge render --template gildan_18000_flatlay --color "#F5F5DC" --json
+./bin/pod-mockup-forge render --template gildan_18000_flatlay --output-svg /tmp/mockup.svg
+
+# Calculate aspect-fit placement inside a target print zone
+./bin/pod-mockup-forge fit --aw 4500 --ah 5400 --tw 800 --th 1000 --json
+
+# Generate 10-slot Etsy carousel plan
+./bin/pod-mockup-forge pack --json
+
+# Audit image dimensions or probe an image file directly
+./bin/pod-mockup-forge audit --width 2700 --height 2025 --mb 3.2 --json
+./bin/pod-mockup-forge audit --file banner.png --json
+
+# Launch HTTP server or MCP stdio server
+./bin/pod-mockup-forge server --port 8119
+./bin/pod-mockup-forge mcp
 ```
 
+### ZothOS v3.4.0 Braille TUI Integration
+
+On ZothOS v3.4.0, `pod-mockup-forge` and `pod-mockup-forge-tui` are installed in `/usr/local/bin` and paired with Zoth Studio v2 (`https://zoth.nullai.tech/tools/pod-mockup-forge`):
+
+```bash
+./bin/pod-mockup-forge-tui --help
+./bin/pod-mockup-forge-tui --json
+```
+
+### MCP Server (`pod-mockup-forge mcp`)
+
+Start the stdio JSON-RPC 2.0 MCP server via `./bin/pod-mockup-forge mcp` or `PYTHONPATH=src python3 -m pod_mockup_forge.mcp_server`.
+
+Exposed MCP tools:
+1. `mockup_list_templates` — List mockup templates with optional category filter (`apparel`, `drinkware`, `wall_art`, `accessories`).
+2. `mockup_generate_scene` — Generate SVG/JSON mockup scene spec (`template_id`, `artwork_url`, `color_hex`, `watermark`).
+3. `mockup_calculate_aspect_fit` — Compute print-area aspect-fit dimensions, offsets, and scale factor.
+4. `mockup_batch_generate_listing_pack` — Generate a 10-slot Etsy carousel listing plan.
+5. `mockup_audit_etsy_compliance` — Audit pixel dimensions and file size against Etsy photo standards.
+6. `mockup_add_watermark_protection` — Generate an SVG diagonal watermark overlay grid.
+
+---
+
+## Testing & Verification
+
+```bash
+python3 -m pytest -q
+```
+
+Test suites cover:
+- `tests/test_mockup_forge.py` — Template schemas, aspect-fit bounding boxes, SVG scene generation, 10-slot carousel planning, and Etsy compliance scoring.
+- `tests/test_hardening.py` — Input validation, SVG escaping, and binary image header probing (`PNG`/`JPEG`/`GIF`/`WebP`).
+- `tests/test_bind_host.py` — Default `127.0.0.1` loopback binding and `ZOTH_BIND_HOST` IP parsing.
+- `tests/test_origin_guard.py` — CSRF `Origin` header validation on mutating POST routes.
+
+---
+
+## Support
+
+This project is 100% free and open-source with zero paywalls or feature gates. Optional support: [Buy Us a Coffee (Stripe)](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X).
+
+## License
+
+MIT License — Engineered by **1nc0gn30** (`@1nc0gn30`, `https://1nc0gn30.si`) • **NullAI** (`https://nullai.tech`).

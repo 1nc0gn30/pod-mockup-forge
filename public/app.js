@@ -147,17 +147,7 @@
   const applyUrlBtn = document.getElementById("apply-url-btn");
   const auditScoreEl = document.getElementById("audit-score");
   const auditDetailsEl = document.getElementById("audit-details");
-  const paywallWrapper = document.getElementById("paywall-wrapper");
-  const paywallOverlay = document.getElementById("paywall-overlay");
   const proBadge = document.getElementById("licenseBadge") || document.getElementById("pro-badge");
-  const licenseModal = document.getElementById("license-modal");
-  const openLicenseModalBtn = document.getElementById("open-license-modal-btn");
-  const btnHeaderKey = document.getElementById("btnHeaderKey");
-  const paywallKeyBtn = document.getElementById("paywall-key-btn");
-  const closeLicenseModalBtn = document.getElementById("close-license-modal-btn");
-  const licenseKeyInput = document.getElementById("license-key-input");
-  const activateKeyBtn = document.getElementById("activate-key-btn");
-  const licenseStatusEl = document.getElementById("license-status");
   const exportBtn = document.getElementById("export-mockup-btn");
   const downloadPackBtn = document.getElementById("download-pack-btn");
 
@@ -198,12 +188,6 @@
       badge.style.color = "var(--emerald, #10B981)";
       badge.style.borderColor = "var(--emerald, #10B981)";
     }
-    if (paywallWrapper) {
-      paywallWrapper.classList.remove("paywall-content-locked");
-      paywallWrapper.classList.remove("paywall-blur");
-      paywallWrapper.classList.add("paywall-content-unlocked");
-    }
-    if (paywallOverlay) paywallOverlay.style.display = "none";
   }
 
   // Populate Templates
@@ -501,7 +485,6 @@
     // Export button
     if (exportBtn) {
       exportBtn.addEventListener("click", () => {
-        if (!requireProLicense("Export High-Res Mockup")) return;
         const link = document.createElement("a");
         link.download = `${currentTemplate.id}_mockup_300dpi.png`;
         link.href = canvas.toDataURL("image/png");
@@ -512,98 +495,9 @@
     // Download 10-Slot Carousel Pack
     if (downloadPackBtn) {
       downloadPackBtn.addEventListener("click", () => {
-        if (!requireProLicense("Download 10-Slot Pack")) return;
         showToast("Generating 10-Slot Etsy Master Listing Pack archives... Check your download folder.", "success");
       });
     }
-
-    // Modal controls
-    if (openLicenseModalBtn) {
-      openLicenseModalBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (licenseModal) licenseModal.style.display = "flex";
-      });
-    }
-    if (btnHeaderKey) {
-      btnHeaderKey.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (licenseModal) licenseModal.style.display = "flex";
-      });
-    }
-    if (paywallKeyBtn) {
-      paywallKeyBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (licenseModal) licenseModal.style.display = "flex";
-      });
-    }
-    if (closeLicenseModalBtn) {
-      closeLicenseModalBtn.addEventListener("click", () => {
-        if (licenseModal) licenseModal.style.display = "none";
-      });
-    }
-    if (licenseModal) {
-      licenseModal.addEventListener("click", (e) => {
-        if (e.target === licenseModal) licenseModal.style.display = "none";
-      });
-    }
-
-    // License Activation
-    if (activateKeyBtn && licenseKeyInput) {
-      const handleActivation = () => {
-        const key = licenseKeyInput.value.trim();
-        const valid = key.length >= 6 || key.toUpperCase().includes("PRO") || key.includes("@");
-        if (valid) {
-          localStorage.setItem("pod_mockup_pro_licensed", "true");
-          localStorage.setItem("pod_mockup_license", key);
-          localStorage.setItem("agent_pod_mockup_pro", "true");
-          localStorage.setItem("zoth_pod_mockup_licensed", "true");
-          localStorage.setItem("pro_licensed", "true");
-          isProLicensed = true;
-          if (licenseStatusEl) {
-            licenseStatusEl.textContent = "✅ License successfully activated! All pro features unlocked.";
-            licenseStatusEl.style.color = "#10B981";
-          }
-          showToast("⭐ Pro License Activated!", "success");
-          setTimeout(() => {
-            if (licenseModal) licenseModal.style.display = "none";
-            checkProStatus();
-            updateCanvas();
-          }, 800);
-        } else {
-          if (licenseStatusEl) {
-            licenseStatusEl.textContent = "❌ Please enter a valid license key or order receipt email.";
-            licenseStatusEl.style.color = "#EF4444";
-          }
-          showToast("Please enter a valid license key or receipt email.", "error");
-        }
-      };
-
-      activateKeyBtn.addEventListener("click", handleActivation);
-      licenseKeyInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          handleActivation();
-        }
-      });
-    }
-
-    // Solana Tip Web3 Solana Trigger
-    document.querySelectorAll(".btn-solana_tip-trigger").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        if (window.SolanaTipButtons && typeof window.SolanaTipButtons.init === "function") {
-          e.preventDefault();
-          try {
-            window.SolanaTipButtons.init({
-              integration: "428790dd-7ad1-407c-8ecf-c048c77a4cb8",
-              receiver: "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK",
-              amount: 19
-            });
-          } catch (err) {
-            window.open(btn.href, "_blank");
-          }
-        }
-      });
-    });
   }
 
   // Initialize

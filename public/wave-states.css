@@ -18,9 +18,6 @@ input:focus-visible,
 .upload-dropzone:focus-visible,
 .upload-dropzone:focus-within,
 .slot-card:focus-visible,
-#close-license-modal-btn:focus-visible,
-#paywall-key-btn:focus-visible,
-#open-license-modal-btn:focus-visible,
 .brand-group:focus-visible {
   outline: 2px solid var(--gold-primary) !important;
   outline-offset: 3px !important;
