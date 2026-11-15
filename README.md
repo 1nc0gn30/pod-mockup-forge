@@ -155,8 +155,8 @@ Test suites cover:
 
 ## Support
 
-This project is 100% free and open-source with zero paywalls or feature gates. Optional support: [Buy Us a Coffee (Stripe)](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X).
+This project is 100% free and open-access with zero paywalls or feature gates. Optional support: [Buy Us a Coffee (Stripe)](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X) · Solana Tip: `GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`.
 
 ## License
 
-MIT License — Engineered by **1nc0gn30** (`@1nc0gn30`, `https://1nc0gn30.si`) • **NullAI** (`https://nullai.tech`).
+MIT License — Engineered by **Neal Frazier Tech (`@1nc0gn30`) • [NullAI Platform](https://nullai.tech)**. Copyright (c) 2026 [Neal Frazier](https://nealfrazier.tech).
