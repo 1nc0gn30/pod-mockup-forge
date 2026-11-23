@@ -135,7 +135,6 @@
   let currentTemplate = TEMPLATES[0];
   let currentColor = currentTemplate.color_palette[0];
   let customArtworkImg = null;
-  let isProLicensed = true;
 
   // DOM Elements
   const canvas = document.getElementById("composite-canvas");
@@ -147,7 +146,7 @@
   const applyUrlBtn = document.getElementById("apply-url-btn");
   const auditScoreEl = document.getElementById("audit-score");
   const auditDetailsEl = document.getElementById("audit-details");
-  const proBadge = document.getElementById("licenseBadge") || document.getElementById("pro-badge");
+  const statusBadge = document.getElementById("licenseBadge");
   const exportBtn = document.getElementById("export-mockup-btn");
   const downloadPackBtn = document.getElementById("download-pack-btn");
 
@@ -171,17 +170,11 @@
     }, 3500);
   }
 
-  // Check Pro Status
+  // Open-Access Status
   function checkProStatus() {
-    isProLicensed = true;
-    const salesBanner = document.getElementById("salesBanner");
-    if (salesBanner) {
-      salesBanner.style.display = "none";
-    }
-
-    const badge = document.getElementById("licenseBadge") || document.getElementById("pro-badge");
+    const badge = document.getElementById("licenseBadge");
     if (badge) {
-      badge.textContent = "✦ 100% UNLOCKED";
+      badge.textContent = "✦ 100% OPEN ACCESS";
       badge.classList.add("active");
       badge.style.display = "inline-flex";
       badge.style.background = "rgba(16, 185, 129, 0.2)";
@@ -412,19 +405,6 @@
       ctx.fillText("Upload PNG or enter image URL", centerX, centerY + 24);
       ctx.restore();
     }
-
-    // 4. Watermark (if not licensed)
-    if (!isProLicensed) {
-      ctx.save();
-      ctx.translate(w / 2, h / 2);
-      ctx.rotate(-Math.PI / 6);
-      ctx.font = `bold ${Math.round(w * 0.035)}px 'Space Grotesk', sans-serif`;
-      ctx.fillStyle = "rgba(255, 255, 255, 0.18)";
-      ctx.textAlign = "center";
-      ctx.fillText("PREVIEW • POD MOCKUP FORGE", 0, 0);
-      ctx.fillText("PRO LICENSE REQUIRED FOR EXPORT", 0, 60);
-      ctx.restore();
-    }
   }
 
   // Update Real-Time Etsy Photo Compliance Metrics
@@ -447,11 +427,9 @@
     }
   }
 
-  // Action Interceptor for Pro Features
-  function requireProLicense(actionName) {
-    if (isProLicensed) return true;
-    if (licenseModal) licenseModal.style.display = "flex";
-    return false;
+  // 100% Open-Access — all exports unlocked by default
+  function requireProLicense() {
+    return true;
   }
 
   // Setup Event Handlers

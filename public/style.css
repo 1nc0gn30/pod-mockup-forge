@@ -614,12 +614,6 @@ body::before {
   margin-top: 2rem;
 }
 
-#license-modal,
-#open-license-modal-btn,
-.founding-banner {
-  display: none !important;
-}
-
 .check-icon {
   color: var(--gold-primary);
   font-weight: 800;
